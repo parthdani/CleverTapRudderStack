@@ -81,7 +81,19 @@ const App: () => Node = () => {
 
  useEffect(() => {
     this.checkPermission();
-    CleverTap.recordEvent('Page Loaded');
+    alert("In here 1");
+    CleverTap.recordEvent('Page Loaded 1');
+    console.log("I'm here 2!!!!!");
+    CleverTap.addListener(CleverTap.CleverTapPushNotificationClicked, (event) => {
+      alert("event: " + JSON.stringify(event));
+      CleverTap.recordEvent('event received sunny');
+      console.log("I'm here!!!!!");
+  });
+
+  //   CleverTap.addListener(CleverTap.CleverTapPushNotificationClicked, (event) => {
+  //     Alert.alert("In here 2", "This is the message", [{ text: "Cancel" }, { text: "Yes" }]);
+      
+  // });
   }, []);
 
 checkPermission = async () => {
@@ -119,7 +131,7 @@ checkPermission = async () => {
           <Section>
           <Button
               // Some properties given to Button
-                title="Push Custom Events"
+                title="Push Custom Events 1"
                 onPress={() => 
                   rudderClient.track("Checked Out", {
                         Clicked_Rush_delivery_Button: true,
